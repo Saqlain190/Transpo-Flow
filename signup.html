@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services - TranspoFlow</title>
+
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+    <!-- 
+    - google font link
+  -->
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    body{
+        height: 0px;
+    }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <section class="signup-section">
+        <div class="signup-container">
+          <div class="signup-form">
+            <h3>Create an Account</h3>
+            <form action="/sign-up" method="POST">
+              <!-- Full Name -->
+              <div class="input-container">
+                <input type="text" class="input-field" placeholder="Full Name" required>
+              </div>
+      
+              <!-- Email Address -->
+              <div class="input-container">
+                <input type="email" class="input-field" placeholder="Email Address" required>
+              </div>
+      
+              <!-- Username -->
+              <div class="input-container">
+                <input type="text" class="input-field" placeholder="Username" required>
+              </div>
+      
+              <!-- Password -->
+              <div class="input-container password-container">
+                <input type="password" class="input-field" id="signupPassword" placeholder="Password" required>
+                <span class="password-toggle" id="toggleSignupPassword">
+                  <i class="fa fa-eye"></i> <!-- Eye icon for password visibility toggle -->
+                </span>
+              </div>
+      
+              <!-- Confirm Password -->
+              <div class="input-container password-container">
+                <input type="password" class="input-field" id="confirmPassword" placeholder="Confirm Password" required>
+                <span class="password-toggle" id="toggleConfirmPassword">
+                  <i class="fa fa-eye"></i> <!-- Eye icon for password visibility toggle -->
+                </span>
+              </div>
+      
+              <!-- Phone Number -->
+              <div class="input-container">
+                <input type="tel" class="input-field" placeholder="Phone Number" required>
+              </div>
+      
+              <!-- Date of Birth -->
+              <div class="input-container">
+                <input type="date" class="input-field" placeholder="Date of Birth" required>
+              </div>
+      
+              <!-- Gender -->
+    
+                    <div class="input-container">
+                        <label class="gender-label">Select Your Gender:</label>
+                        <div class="gender-options">
+                        <label class="gender-label">
+                            <input type="radio" name="gender" value="male" required> Male
+                        </label>
+                        <label class="gender-label">
+                            <input type="radio" name="gender" value="female" required> Female
+                        </label>
+                        <label class="gender-label">
+                            <input type="radio" name="gender" value="other" required> Other
+                        </label>
+                        </div>
+                    </div>
+  
+  
+      
+    
+      
+              <div class="input-container">
+                <label>
+                  <input type="checkbox" required> <a href="#">I agree Terms & Conditions</a>
+                </label>
+              </div>
+              
+      
+              <button type="submit" class="btn-submit">Sign Up</button>
+            </form>
+            <p class="signin-link">
+              Already have an account? <a href="signin.html" class="signin-link-text">Sign In</a>
+            </p>
+          </div>
+        </div>
+      </section>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+      <script>
+        const toggleSignupPassword = document.getElementById('toggleSignupPassword');
+        const signupPasswordField = document.getElementById('signupPassword');
+      
+        toggleSignupPassword.addEventListener('click', function () {
+          // Toggle password visibility
+          const type = signupPasswordField.type === 'password' ? 'text' : 'password';
+          signupPasswordField.type = type;
+      
+          // Toggle eye icon (for visual effect)
+          const icon = this.querySelector('i');
+          icon.classList.toggle('fa-eye');       // Switch to open eye icon
+          icon.classList.toggle('fa-eye-slash'); // Switch to closed eye icon
+        });
+      
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const confirmPasswordField = document.getElementById('confirmPassword');
+      
+        toggleConfirmPassword.addEventListener('click', function () {
+          // Toggle password visibility for Confirm Password
+          const type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+          confirmPasswordField.type = type;
+      
+          // Toggle eye icon (for visual effect)
+          const icon = this.querySelector('i');
+          icon.classList.toggle('fa-eye');       // Switch to open eye icon
+          icon.classList.toggle('fa-eye-slash'); // Switch to closed eye icon
+        });
+      </script>
+            
+      
+
+</body>
+</html>

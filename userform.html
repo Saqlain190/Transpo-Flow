@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company information form</title>
+
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+    <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+        height: 0px;
+    }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <section class="companyform-section">
+        <div class="companyform-container">
+          <div class="companyform-form">
+            <h3>Enter Company Information</h3>
+            <br>
+            <form action="/form" method="POST">
+              <!-- Full Name -->
+              <div class="input-container">
+                <label for="">Company Name :</label>
+                <input type="text" class="input-field" placeholder="" required>
+              </div>
+      
+              <!-- Email Address -->
+              <div class="input-container">
+                <label for="companyType">Company Type :</label>
+                <select id="companyType" class="input-field" required>
+                    <option value="" disabled selected>Select Company Type</option>
+                    <option value="fleet" style="color: black;">Fleet Company</option>
+                    <option value="shuttle" style="color: black;">Shuttle Company</option>
+                    <option value="transport" style="color: black;">Transport Company</option>
+                </select>
+              </div>
+     
+              <!-- Username -->
+              <div class="input-container">
+                <label for="">Company Address :</label>
+                <input type="text" class="input-field" placeholder="" required>
+            </div>
+      
+              <!-- Password -->
+              <div class="input-container password-container">
+                <label for="company-phone">Company Phone Number :</label>
+                <input type="tel" id="company-phone" class="input-field" placeholder="" required>
+          </div>
+      
+              <!-- Confirm Password -->
+              <label>Services</label>
+              <div class="input-container checkbox-container">
+                <div class="checkbox-group">
+                  <label><input type="checkbox" value="admin-panel"> Admin Panel</label>
+                  <label><input type="checkbox" value="transport-management"> Transport Management System</label>
+                  <label><input type="checkbox" value="fleet-management"> Fleet Management System</label>
+                  <label><input type="checkbox" value="ticket-management"> Ticket Management System</label>
+                  <label><input type="checkbox" value="cargo-management"> Cargo Management System</label>
+                  <label><input type="checkbox" value="customer-support"> Customer Support</label>
+                </div>
+          
+             </div>
+      
+              <!-- Phone Number -->
+              <div class="input-container">
+                <label>Select Color Palette</label>
+                <div class="radio-group">
+                  <label class="color-option">
+                    <input type="radio" name="colorPalette" value="palette-1" required>
+                    <div class="color-sample color-1"></div>
+                    <div class="color-sample color-2"></div>
+                    <div class="color-sample color-3"></div>
+                  </label>
+                  <label class="color-option">
+                    <input type="radio" name="colorPalette" value="palette-2">
+                    <div class="color-sample color-4"></div>
+                    <div class="color-sample color-5"></div>
+                    <div class="color-sample color-6"></div>
+                  </label>
+                </div>
+              </div>
+      
+              <!-- Date of Birth -->
+              <div class="input-container">
+                <label for="companyLogo">Company Logo (Optional)</label>
+                <input type="file" class="input-field" id="companyLogo" accept="image/*">      
+              </div>
+
+
+
+
+              <div class="input-container">
+                <label for="adminUsername">Admin Username</label>
+                <input type="text" class="input-field" id="adminUsername"  required>
+             
+              </div>
+
+              <div class="input-container">
+                <label for="numEmployees">Number of Employees</label>
+                <select id="numEmployees" class="input-field" required>
+                    <option value="" disabled selected>Select Number of Employees</option>
+                    <option value="<5" style="color: black;">Less than 5</option>
+                    <option value="5-20" style="color: black;">5 to 20</option>
+                    <option value="20-100" style="color: black;">20 to 100</option>
+                    <option value="100-250" style="color: black;">100 to 250</option>
+                    <option value=">250" style="color: black;">More than 250</option>
+                </select>
+            </div>
+
+              <div class="input-container">
+                <label for="adminPassword">Admin Password</label>
+                <input type="password" class="input-field" id="adminPassword"  required>
+              </div>
+
+              
+              <div style="text-align: center; margin-top: 20px;">
+                <button type="submit" class="btn-submit">Start Creating My Website</button>
+              </div>
+          </form>
+           
+          </div>
+        </div>
+      </section>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    
+      
+
+</body>
+</html>

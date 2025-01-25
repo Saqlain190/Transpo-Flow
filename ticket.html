@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <title>My Store | Tivotal</title>
+
+    <!--font awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <section class="sidebar">
+      <a href="admin.html" class="logo">
+        <i class="fab fa-slack"></i>
+        <span class="text">Admin Panel</span>
+      </a>
+
+      <ul class="side-menu top">
+        <li>
+          <a href="admin.html" class="nav-link">
+            <i class="fas fa-border-all"></i>
+            <span class="text">Admin Dashboard</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="fms.html" class="nav-link">
+            <i class="fas fa-road"></i>
+            <span class="text">Fleet Management</span>
+          </a>
+        </li>
+        <li>
+          <a href="ticket.html" class="nav-link">
+            <i class="fas fa-ticket"></i>
+            <span class="text">Ticket Management</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <i class="fas fa-truck"></i>
+            <span class="text">Cargo Management</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <i class="fas fa-people-group"></i>
+            <span class="text">Customer Support</span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="side-menu">
+        <li>
+          <a href="#">
+            <i class="fas fa-cog"></i>
+            <span class="text">Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="logout">
+            <i class="fas fa-right-from-bracket"></i>
+            <span class="text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="content">
+      <div class="box-info">
+        <h1>Ticket Management</h1>
+        <div class="ticket-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Issue</th>
+                <th>Status</th>
+                <th>Assigned To</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>T001</td>
+                <td>Server Down</td>
+                <td><span class="status open">Open</span></td>
+                <td>John Doe</td>
+                <td>
+                  <button class="view-btn">View</button>
+                  <button class="close-btn">Close</button>
+                  <button class="assign-btn">Assign Staff</button>
+                </td>
+              </tr>
+              <tr>
+                <td>T002</td>
+                <td>Website Bug</td>
+                <td><span class="status in-progress">In Progress</span></td>
+                <td>Jane Smith</td>
+                <td>
+                  <button class="view-btn">View</button>
+                  <button class="close-btn">Close</button>
+                  <button class="assign-btn">Assign Staff</button>
+                </td>
+              </tr>
+              <tr>
+                <td>T003</td>
+                <td>Database Issue</td>
+                <td><span class="status closed">Closed</span></td>
+                <td>Emily Lee</td>
+                <td>
+                  <button class="view-btn">View</button>
+                  <button class="close-btn">Close</button>
+                  <button class="assign-btn">Assign Staff</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="add-ticket">Add New Ticket</button>
+      </div>
+    </section>
+
+    <!-- Missing Closing Tags -->
+  </body>
+</html>
