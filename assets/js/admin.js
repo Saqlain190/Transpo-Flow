@@ -122,3 +122,41 @@ document.addEventListener('DOMContentLoaded', function() {
   // Set company phone number
   document.getElementById('company-phone').textContent = companyInfo.phone;
 });
+// JavaScript for handling Edit and Save buttons
+document.addEventListener('DOMContentLoaded', function() {
+  const editButtons = document.querySelectorAll('.edit-btn');
+  const saveButtons = document.querySelectorAll('.save-btn');
+  const inputs = document.querySelectorAll('input');
+
+  // Add Event Listener to Edit buttons
+  editButtons.forEach((editBtn, index) => {
+    editBtn.addEventListener('click', function() {
+      // Enable input fields and show the Save button
+      const row = editBtn.closest('tr');
+      const rowInputs = row.querySelectorAll('input');
+      rowInputs.forEach(input => input.disabled = false);
+
+      // Show Save button, Hide Edit button
+      editBtn.style.display = 'none';
+      row.querySelector('.save-btn').style.display = 'inline-block';
+    });
+  });
+
+  // Add Event Listener to Save buttons
+  saveButtons.forEach((saveBtn, index) => {
+    saveBtn.addEventListener('click', function() {
+      const row = saveBtn.closest('tr');
+      const rowInputs = row.querySelectorAll('input');
+      
+      // Disable input fields and hide the Save button
+      rowInputs.forEach(input => input.disabled = true);
+
+      // Show Edit button, Hide Save button
+      row.querySelector('.edit-btn').style.display = 'inline-block';
+      saveBtn.style.display = 'none';
+
+      // Optional: You can add code here to save the changes (e.g., make an API call)
+      console.log('Changes saved for row:', rowInputs);
+    });
+  });
+});

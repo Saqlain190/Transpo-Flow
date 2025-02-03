@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cargo Management | Tivotal</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- CSS File -->
+    <link rel="stylesheet" href="assets/css/admin.css" />
+  </head>
+  <body>
+    <section class="sidebar">
+      <a href="admin.html" class="logo">
+        <i class="fab fa-slack"></i>
+        <span class="text">Admin Panel</span>
+      </a>
+      <ul class="side-menu top">
+        <li><a href="admin.html"><i class="fas fa-border-all"></i><span>Admin Dashboard</span></a></li>
+        <li><a href="fms.html"><i class="fas fa-road"></i><span>Fleet Management</span></a></li>
+        <li><a href="ticket.html"><i class="fas fa-ticket"></i><span>Ticket Management</span></a></li>
+        <li class="active"><a href="cms.html"><i class="fas fa-truck"></i><span>Cargo Management</span></a></li>
+        <li><a href="#"><i class="fas fa-people-group"></i><span>Customer Support</span></a></li>
+      </ul>
+      <ul class="side-menu">
+        <li><a href="#"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+        <li><a href="#" class="logout"><i class="fas fa-right-from-bracket"></i><span>Logout</span></a></li>
+      </ul>
+    </section>
+    
+    <section class="content">
+      <main>
+        <div class="head-title">
+          <div class="left">
+            <h1>Cargo Management</h1>
+          </div>
+          <a href="#" class="download-btn"><i class="fas fa-globe"></i><span>View Website</span></a>
+        </div>
+
+        <!-- Cargo Booking Module -->
+        <div class="box-info">
+          <h1>Cargo Booking</h1>
+          <div class="cargo-container">
+            <form>
+              <label>Cargo Type:</label>
+              <input type="text" class="editable" disabled>
+
+              <label>Weight (kg):</label>
+              <input type="number" class="editable" disabled>
+
+              <label>Origin:</label>
+              <input type="text" class="editable" disabled>
+
+              <label>Destination:</label>
+              <input type="text" class="editable" disabled>
+
+              <label>Shipping Date:</label>
+              <input type="date" class="editable" disabled>
+            </form>
+          </div>
+          <div class="button-container">
+            <button class="edit-btn">Edit</button>
+            <button class="save-btn">Save</button> <!-- Separate Save Button -->
+          </div>
+        </div>
+
+        <!-- Damage or Loss Claims Module -->
+        <div class="box-info">
+          <h1>Damage or Loss Claims</h1>
+          <div class="claims-container">
+            <form>
+              <label>Booking ID:</label>
+              <input type="text" class="editable" disabled>
+
+              <label>Claim Type:</label>
+              <select class="editable" disabled>
+                <option>Select claim type</option>
+                <option value="damage">Damage</option>
+                <option value="loss">Loss</option>
+              </select>
+
+              <label>Description:</label>
+              <textarea class="editable" rows="4" disabled></textarea>
+
+              <label>Claim Amount:</label>
+              <input type="number" class="editable" disabled>
+            </form>
+          </div>
+          <div class="button-container">
+            <button class="edit-btn">Edit</button>
+            <button class="save-btn">Save</button> <!-- Separate Save Button -->
+          </div>
+        </div>
+
+        <!-- Cargo Price Management Module -->
+        <div class="box-info">
+          <h1>Cargo Price Management</h1>
+          <div class="price-management-container">
+            <form>
+              <label>Route:</label>
+              <input type="text" class="editable" disabled>
+
+              <label>Cargo Category:</label>
+              <input type="text" class="editable" disabled>
+
+              <label>Base Price:</label>
+              <input type="number" class="editable" disabled>
+
+              <label>Surcharge (%):</label>
+              <input type="number" class="editable" min="0" max="100" disabled>
+
+              <label>Discount (%):</label>
+              <input type="number" class="editable" min="0" max="100" disabled>
+            </form>
+          </div>
+          <div class="button-container">
+            <button class="edit-btn">Edit</button>
+            <button class="save-btn">Save</button> <!-- Separate Save Button -->
+          </div>
+        </div>
+
+      </main>
+    </section>
+
+    <script>
+      document.querySelectorAll('.edit-btn').forEach((editBtn, index) => {
+        editBtn.addEventListener('click', function() {
+          const parent = editBtn.closest('.box-info');
+          const inputs = parent.querySelectorAll('.editable');
+          const isEditable = inputs[0].disabled;
+
+          inputs.forEach(input => input.disabled = !isEditable);
+
+          // Toggle Edit button text
+          editBtn.textContent = isEditable ? "Editing Mode" : "Edit";
+        });
+      });
+
+      document.querySelectorAll('.save-btn').forEach((saveBtn, index) => {
+        saveBtn.addEventListener('click', function() {
+          const parent = saveBtn.closest('.box-info');
+          const inputs = parent.querySelectorAll('.editable');
+
+          // Log the saved data
+          console.log("Saved Data:", Array.from(inputs).map(input => input.value));
+
+          // Alert user (You can replace this with backend saving logic)
+          alert("Changes Saved Successfully!");
+        });
+      });
+    </script>
+  </body>
+</html>

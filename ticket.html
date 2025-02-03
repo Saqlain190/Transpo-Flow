@@ -4,16 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/admin.css" />
-   
-    
-    <title>My Store | Tivotal</title>
+    <title>Ticket Management | Tivotal</title>
 
-    <!--font awesome-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- CSS File -->
+    <link rel="stylesheet" href="assets/css/admin.css" />
   </head>
   <body>
     <section class="sidebar">
@@ -21,7 +18,6 @@
         <i class="fab fa-slack"></i>
         <span class="text">Admin Panel</span>
       </a>
-
       <ul class="side-menu top">
         <li>
           <a href="admin.html" class="nav-link">
@@ -29,20 +25,20 @@
             <span class="text">Admin Dashboard</span>
           </a>
         </li>
-        <li class="active">
-          <a href="fms copy.html" class="nav-link">
+        <li>
+          <a href="fms.html" class="nav-link">
             <i class="fas fa-road"></i>
             <span class="text">Fleet Management</span>
           </a>
         </li>
-        <li>
+        <li class="active">
           <a href="ticket.html" class="nav-link">
             <i class="fas fa-ticket"></i>
             <span class="text">Ticket Management</span>
           </a>
         </li>
         <li>
-          <a href="#" class="nav-link">
+          <a href="cms.html" class="nav-link">
             <i class="fas fa-truck"></i>
             <span class="text">Cargo Management</span>
           </a>
@@ -54,7 +50,6 @@
           </a>
         </li>
       </ul>
-
       <ul class="side-menu">
         <li>
           <a href="#">
@@ -70,149 +65,126 @@
         </li>
       </ul>
     </section>
+    
     <section class="content">
       <main>
         <div class="head-title">
           <div class="left">
-            <h1>Ticket Booking</h1>
+            <h1>Ticket Management</h1>
             <ul class="breadcrumb">
               <li>
                 <a href="admin.html">Dashboard</a>
               </li>
               <i class="fas fa-chevron-right"></i>
               <li>
-                <a href="ticket-booking.html" class="active">Ticket Booking</a>
+                <a href="#" class="active">Ticket Management</a>
               </li>
             </ul>
           </div>
-
           <a href="#" class="download-btn">
             <i class="fas fa-globe"></i>
             <span class="text">View Website</span>
           </a>
         </div>
 
+        <!-- Manage Ticket Pricing Module -->
         <div class="box-info">
-          <h1>Search Tickets</h1>
-          <form id="ticket-search">
+          <h1>Manage Ticket Pricing</h1>
+          <div class="ticket-container">
             <table>
               <thead>
                 <tr>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Date</th>
-                  <th>Mode</th>
+                  <th>Ticket ID</th>
+                  <th>Event</th>
+                  <th>Category</th>
+                  <th>Price</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><input type="text" id="from" name="from" required placeholder="Enter departure"></td>
-                  <td><input type="text" id="to" name="to" required placeholder="Enter destination"></td>
-                  <td><input type="date" id="date" name="date" required></td>
+                  <td><input type="text" value="T001" disabled></td>
+                  <td><input type="text" value="Concert" disabled></td>
+                  <td><input type="text" value="VIP" disabled></td>
+                  <td><input type="text" value="$150" disabled></td>
                   <td>
-                    <select id="mode" name="mode">
-                      <option value="bus">Bus</option>
-                      <option value="train">Train</option>
-                      <option value="flight">Flight</option>
-                    </select>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
                   </td>
-                  <td><button type="submit">Search</button></td>
                 </tr>
               </tbody>
             </table>
-          </form>
-        </div>
-
-        <div class="box-info">
-          <h1>Select Seats</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Seat Number</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Dynamic rows can be added here -->
-              <tr>
-                <td>S001</td>
-                <td>Available</td>
-                <td><button>Select</button></td>
-              </tr>
-              <tr>
-                <td>S002</td>
-                <td>Booked</td>
-                <td><button disabled>Unavailable</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="box-info">
-          <h1>Ticket Issuance</h1>
-          <div class="ticket-details">
-            <h3>Ticket Details</h3>
-            <p>Passenger Name: John Doe</p>
-            <p>Route: City A to City B</p>
-            <p>Seat Number: 12</p>
-            <p>Date: 2025-01-30</p>
-            <button>Download E-Ticket</button>
-            <button>Reschedule</button>
-            <button>Cancel Ticket</button>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <button class="add-ticket">Add New Ticket</button>
           </div>
         </div>
+
+        <!-- Manage Ticket Booking Module -->
         <div class="box-info">
-          <h2>User Management</h2>
-          <form id="user-management-form">
-            <!-- User Details -->
-            <div class="form-group">
-              <label for="user-id">User ID:</label>
-              <input type="text" id="user-id" name="user-id" placeholder="Enter User ID" required />
-            </div>
-            
-            <div class="form-group">
-              <label for="user-name">Name:</label>
-              <input type="text" id="user-name" name="user-name" placeholder="Enter User Name" required />
-            </div>
-            
-            <div class="form-group">
-              <label for="user-email">Email:</label>
-              <input type="email" id="user-email" name="user-email" placeholder="Enter User Email" required />
-            </div>
-            
-            <div class="form-group">
-              <label for="user-role">Role:</label>
-              <select id="user-role" name="user-role" required>
-                <option value="">Select Role</option>
-                <option value="admin">Admin</option>
-                <option value="manager">Manager</option>
-                <option value="support">Support</option>
-              </select>
-            </div>
-        
-            <!-- Actions -->
-            <div class="form-group">
-              <button type="submit" class="btn-submit">Add User</button>
-              <button type="button" class="btn-reset" onclick="document.getElementById('user-management-form').reset()">Reset</button>
-            </div>
-          </form>
-        
-          <!-- User List -->
-          <div class="user-list">
-            <h3>Existing Users</h3>
-            <ul id="user-list">
-              <li>No users found.</li>
-            </ul>
+          <h1>Manage Ticket Booking</h1>
+          <div class="booking-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Customer</th>
+                  <th>Event</th>
+                  <th>Seats</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="text" value="B001" disabled></td>
+                  <td><input type="text" value="John Doe" disabled></td>
+                  <td><input type="text" value="Concert" disabled></td>
+                  <td><input type="text" value="2" disabled></td>
+                  <td><input type="text" value="Confirmed" disabled></td>
+                  <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <button class="add-booking">Add New Booking</button>
+          </div>
+        </div>
+
+        <!-- Customer Support Module -->
+        <div class="box-info">
+          <h1>Customer Support</h1>
+          <div class="support-container">
+            <p>Manage customer queries related to ticketing.</p>
+            <button>View Tickets</button>
+            <button>Live Chat</button>
+            <button>Contact Support</button>
           </div>
         </div>
         
-
       </main>
     </section>
 
-    <script src="assets/js/admin.js"></script>    
-    <!-- Missing Closing Tags -->
+    <script>
+      // Handle edit button click
+      const editButtons = document.querySelectorAll('.edit-btn');
+      
+      editButtons.forEach((editBtn) => {
+        editBtn.addEventListener('click', function() {
+          const row = editBtn.closest('tr');
+          const inputs = row.querySelectorAll('input');
+          const isEditable = inputs[0].disabled;
+
+          // Toggle the disabled state
+          inputs.forEach(input => input.disabled = !isEditable);
+
+          
+        });
+      });
+    </script>
   </body>
 </html>
