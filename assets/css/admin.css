@@ -424,7 +424,8 @@ body.dark {
 
 .content main .box-info button {
   display: block;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
   padding: 10px 20px;
   background-color: var(--blue);
   color: #fff;
@@ -795,4 +796,108 @@ canvas {
   display: block;
   content: "";
   margin: 10px 0;
+}
+
+/* trackiing cargo */
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 80%;
+  max-width: 600px;
+}
+
+.tracking-input {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.status-container {
+  display: none;
+  margin-top: 20px;
+}
+
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: 40px 0;
+}
+
+.progress-line {
+  position: absolute;
+  height: 4px;
+  background: #ddd;
+  width: 100%;
+  z-index: 0;
+}
+
+.progress-fill {
+  position: absolute;
+  height: 4px;
+  background: #007bff;
+  z-index: 1;
+  transition: width 0.5s ease;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.stage-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ddd;
+  margin-bottom: 10px;
+  border: 3px solid white;
+}
+
+.stage.active .stage-dot {
+  background: #007bff;
+}
+
+.stage-label {
+  color: #666;
+  font-size: 14px;
+}
+
+.status-message {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
 }

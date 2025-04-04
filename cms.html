@@ -8,7 +8,7 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- CSS File -->
     <link rel="stylesheet" href="assets/css/admin.css" />
   </head>
@@ -40,94 +40,443 @@
           <a href="#" class="download-btn"><i class="fas fa-globe"></i><span>View Website</span></a>
         </div>
 
-        <!-- Cargo Booking Module -->
+             
+                
+             
+
+                        <div class="box-info">
+                          <h1>Admin Rate Configuration Form</h1>
+                          <form id="adminConfigForm">
+                      
+                              <!-- City-to-City Rates -->
+                              <h3>City-to-City Base Rates</h3>
+                              <div class="cargo-container">
+                                  <div>
+                                      <select name="origin_city" class="editable" required>
+                                          <option value="">Select Origin City</option>
+                                          <!-- Populate from database -->
+                                      </select>
+                      
+                                      <select name="destination_city" class="editable" required>
+                                          <option value="">Select Destination City</option>
+                                          <!-- Populate from database -->
+                                      </select>
+                      
+                                      <input type="number" name="base_rate" class="editable" step="0.01" placeholder="Base Rate" required>
+                                  
+                                  <br>
+                                  <br>
+                            
+                                      <h5>Select Days for these cities Shipment</h5>
+                                      <div class="days-container">
+                                        <label><input type="checkbox" name="available_days[]" value="Monday"> Monday</label>
+                                        <label><input type="checkbox" name="available_days[]" value="Tuesday"> Tuesday</label>
+                                        <label><input type="checkbox" name="available_days[]" value="Wednesday"> Wednesday</label>
+                                        <label><input type="checkbox" name="available_days[]" value="Thursday"> Thursday</label>
+                                        <label><input type="checkbox" name="available_days[]" value="Friday"> Friday</label>
+                                        <label><input type="checkbox" name="available_days[]" value="Saturday"> Saturday</label>
+                                        <label><input type="checkbox" name="available_days[]" value="Sunday"> Sunday</label>
+                                    </div>
+                                    </div>
+                              </div>
+                              <div class="button-container">
+                                  <button type="button" class="save-btn" onclick="addCityRateField()">+ Add Another City Pair</button>
+                              </div>
+                      
+                       
+                              <!-- Weight-Based Pricing -->
+                              <h3>Weight Settings</h3>
+                              <div class="cargo-container">
+                                <div class="cargo-container">
+                                    <div>
+                                        <input type="number" name="min_weight" class="editable" placeholder="Min Weight (kg)" step="1" >
+                                        <input type="number" name="max_weight" class="editable" placeholder="Max Weight (kg)" step="1" >
+                                        <input type="number" name="rate_per_kg" class="editable" step="0.01" placeholder="Rate/kg" >
+                                        <br>
+                          
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="button-container">
+                                  <button type="button" class="save-btn" onclick="addWeightTier()">+ Add Tier</button>
+                              </div>
+
+                   <!-- Volume-Based Pricing -->
+                              <h3>Volumetric Settings</h3>
+                              <div class="cargo-container">
+                                <label>
+                                    <input type="checkbox" name="enable_volumetric" id="enable_volumetric"> Enable Volumetric Weight
+                                </label>
+                                <div class="cargo-container">
+                                    <div>
+                                        <input type="number" name="min_volume" class="editable_vol" placeholder="Min Volume (cm³)" step="1" disabled>
+                                        <input type="number" name="max_volume" class="editable_vol" placeholder="Max Volume (cm³)" step="1" disabled>
+                                        <input type="number" name="rate_per_cm3" class="editable_vol" step="0.0001" placeholder="Rate/cm³" disabled>
+                                        <br>
+                                        <small>Volume = Length × Width × Height (calculated in cm³)</small>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="button-container">
+                                  <button type="button" class="save-btn" onclick="addVolumeTier()">+ Add Tier</button>
+                              </div>
+
+                           
+                              <!-- Additional Charges -->
+                              <h3>Additional Charges</h3>
+                              <div class="cargo-container">
+                                  <div>
+                                      <select name="charge_type" class="editable">
+                                          <option value="fuel">Fuel Surcharge (%)</option>
+                                          <option value="handling">Handling Fee (Fixed)</option>
+                                          <!-- Other charge types -->
+                                      </select>
+                                      <input type="number" name="charge_value" class="editable" step="0.01" placeholder="Value">
+                                  </div>
+                              </div>
+                              <div class="button-container">
+                                  <button type="button" class="save-btn" onclick="addChargeField()">+ Add Charge</button>
+                              </div>
+                      
+                              <!-- Service Types -->
+                              <h3>Service Type</h3>
+                              <div class="cargo-container">
+                                <label>
+                                  <input type="radio" name="service_type" value="door_to_door" required>
+                                  Door-to-Door <span style="font-weight: 50;">(Home Pickup and Delivery)</span>
+                                </label>
+                                <br>
+                                <label>
+                                  <input type="radio" name="service_type" value="office_to_office" required>
+                                  Office-to-Office <span style="font-weight: 50;">(Customer Drops and Picks Up at Offices)</span>
+                                </label>
+                                <br>
+                                <label>
+                                  <input type="radio" name="service_type" value="hybrid" required >
+                                  Hybrid <span style="font-weight: 50;">(Customer could Drops and Picks Up from Home or Office)</span>
+                                </label>
+                              </div>
+                              <div class="button-container">
+                                  <button type="button" class="save-btn" onclick="addServiceLevel()">+ Add Service</button>
+                              </div>
+                      
+                              <!-- Save Button -->
+                              <div class="button-container">
+                                  <button type="submit" class="save-btn">Save Configuration</button>
+                              </div>
+                          </form>
+                      </div>
+                      
+        
+                      <div class="box-info">
+                        <h1>Cargo Booking</h1>
+                        <div class="cargo-container">
+                          <form id="shippingForm">
+                              <!-- Shipper Information -->
+                              <h3>Shipper Information</h3>
+                              <label>Shipper City:</label>
+                              <select id="shipperCity">
+                                  <option value="Lahore">Lahore</option>
+                                  <option value="Karachi">Karachi</option>
+                              </select>
+                              <br>
+                              <label>Shipper Name:</label>
+                              <input type="text" class="editable" id="shipperName">
+                          
+                              <label>Phone Number:</label>
+                              <input type="text" class="editable" id="shipperPhone">
+                          
+                              <label>Shipper Address:</label>
+                              <input type="text" class="editable" id="shipperAddress">
+                          
+                              <br><br>
+                          
+                              <!-- Consignee Information -->
+                              <h3>Consignee Information</h3>
+                              <label>Consignee City:</label>
+                              <select id="consigneeCity">
+                                  <option value="Lahore">Lahore</option>
+                                  <option value="Karachi">Karachi</option>
+                              </select>
+                          <br>
+                              <label>Name:</label>
+                              <input type="text" class="editable" id="consigneeName">
+                          
+                              <label>Phone Number :</label>
+                              <input type="text" class="editable" id="consigneePhone">
+
+
+                              <label>Address:</label>
+                              <input type="text" class="editable" id="consigneeAddress">
+                          
+                            
+                          
+                              <label>Email Address:</label>
+                              <input type="email" class="editable" id="consigneeEmail">
+                          
+                              <label>Delivery Option</label>
+                              <select class="editable" id="deliveryOption">
+                                  <option>Company Office</option>
+                                  <option>Home</option>
+                              </select>
+                          
+                              <br><br>
+                          
+                              <!-- Order Information -->
+                              <h3>Order Information</h3>
+                              <label>Order ID:</label>
+                              <input type="text" class="editable" id="orderId" disabled>
+                          
+                              <label>Order Date:</label>
+                              <input type="date" class="editable" id="orderDate">
+                          
+                              <label>Item Description:</label>
+                              <textarea class="editable" id="itemDescription"></textarea>
+                          
+                              <label>Item Quantity:</label>
+                              <input type="number" class="editable" id="itemQuantity">
+                          
+                              <label>Insurance:</label>
+                              <select class="editable" id="insurance">
+                                  <option>No</option>
+                                  <option>Yes</option>
+                              </select>
+                          
+                              <br><br>
+                          
+                              <!-- Rate Calculation-->
+                              <h3>Rate Calculation</h3>
+                              <label>Weight (kg):</label>
+                              <input type="number" id="weight" class="weight">
+                              <br>
+                          
+                              <label>Length (cm):</label>
+                              <input type="number" id="length">
+                              <label>Width (cm):</label>
+                              <input type="number" id="width">
+                              <label>Height (cm):</label>
+                              <input type="number" id="height">
+                              <br>
+                          
+                              <label for="imageUpload">Upload Images:</label>
+                              <input type="file" id="imageUpload" name="images[]" accept="image/*" multiple>
+                          
+                              <br><br>
+                          
+                              <!-- Calculate Charges Button -->
+                              <button type="button" onclick="calculateCharges()">Calculate Charges</button>
+                          
+                              <h3>Total Charges: <span id="totalCharges">0 Rs</span></h3>
+                          </form>
+                  
+                          <div class="button-container">
+                              <button class="cargo_ticket_print" onclick="generatePDF()">Book & Print</button>
+                          </div>
+                      </div>
+
+                    </div>
+                    
+  
+
+        <!-- booked Cargo  Module -->
         <div class="box-info">
-          <h1>Cargo Booking</h1>
+          <h1>Booked Cargo Tickets</h1>
           <div class="cargo-container">
-            <form>
-              <label>Cargo Type:</label>
-              <input type="text" class="editable" disabled>
+            
+            
+            <div class="top-bar">
+              <label>Show 
+                  <select>
+                      <option>10</option>
+                      <option>25</option>
+                      <option>50</option>
+                      <option>100</option>
+                  </select> entries
+              </label>
 
-              <label>Weight (kg):</label>
-              <input type="number" class="editable" disabled>
+            </div>
 
-              <label>Origin:</label>
-              <input type="text" class="editable" disabled>
+            <table>
+              <thead>
+                  <tr>
+                      <th>S. No.</th>
+                      <th>Order Id.</th>
+             
+                      <th>Status</th>
+               
+                      <th>Origin</th>
+                      <th>Destination</th>
+                      <th>Consignee Name</th>
+                      <th>Consignee Contact</th>
+                      <th>Consignee Address</th>
 
-              <label>Destination:</label>
-              <input type="text" class="editable" disabled>
-              <br><br>
+                      <th>Booking Date</th>
 
-              <label>Shipping Date:</label>
-              <input type="date" class="editable" disabled>
-            </form>
+                   
+                  </tr>
+
+                  <tr>
+                    <th></th>
+                    <th><input type="text" class="search-input" placeholder="Search"></th>
+                    <th>
+                      <select>
+                        <option>Select Service</option>
+                        <option value="Pending">Pending</option>
+                          <option value="Dispatch">Dispatch</option>
+                          <option value="Intransit">Intransit</option>
+                          <option value="Delivered">Delivered</option>
+                    </select>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+             
+                </tr>
+              
+              </thead>
+              <tbody>
+                  <tr>
+                      <td><input type="checkbox"></td>
+                      <td><a href="#">20250117472719</a></td>
+               
+                      <td>
+                        <select id="shippingStatus">
+                          <option value="Pending">Pending</option>
+                          <option value="Dispatch">Dispatch</option>
+                          <option value="Intransit">Intransit</option>
+                          <option value="Delivered">Delivered</option>
+                      </select>
+                      </td>
+              
+                      <td>Karachi</td>
+                      <td>Karachi</td>
+                      <td>syeda</td>
+                      <td>0345-001078</td>
+                      <td>R-201 commercial society karachi</td>
+
+                      <td>2025-03-01 </td>
+
+           
+                  </tr>
+                  <tr>
+                      <td><input type="checkbox"></td>
+                      <td><a href="#">20250117582127</a></td>
+              
+                      <td>
+                        <select id="shippingStatus">
+                          <option value="Pending">Pending</option>
+                          <option value="Dispatch">Dispatch</option>
+                          <option value="Intransit">Intransit</option>
+                          <option value="Delivered">Delivered</option>
+                      </select>
+                      </td>
+             
+                      <td>Karachi</td>
+                      <td>Karachi</td>
+                      <td>Test</td>
+                      <td>0213-213132</td>
+                      <td></td>
+ 
+                      <td>20225-03-28 </td>
+  
+              
+                  </tr>
+                  <!-- Add more rows as needed -->
+              </tbody>
+            </table>
+            <div class="button-container">
+              <button type="button" class="edit-btn" onclick="enableRowEditing()">Edit</button>
+              <button class="save-btn" onclick="Delete()">Delete</button>
+              <button class="save-btn" onclick="saveRowChanges()">Save Changes</button>
+            </div>
           </div>
-          <div class="button-container">
-            <button class="edit-btn">Edit</button>
-            <button class="save-btn">Save</button> <!-- Separate Save Button -->
-          </div>
-        </div>
 
-        <!-- Damage or Loss Claims Module -->
+            <!-- Track Cargo  Module -->
         <div class="box-info">
-          <h1>Damage or Loss Claims</h1>
+          <h1>Cargo Tracking System</h1>
           <div class="cargo-container">
-            <form>
-              <label>Booking ID:</label>
-              <input type="text" class="editable" disabled>
+            
+  
+              <h5>Track Your Parcel Here</h5>
+              <div class="tracking-input">
+                  <input type="text" id="trackingNumber" placeholder="Enter tracking number">
+                  <button onclick="checkStatus()">Track</button>
+              </div>
+              <div class="status-container" id="statusContainer">
+                  <div class="progress-bar">
+                      <div class="progress-line"></div>
+                      <div class="progress-fill" id="progressFill"></div>
+                      <div class="stage">
+                          <div class="stage-dot"></div>
+                          <span class="stage-label">Pending</span>
+                      </div>
+                      <div class="stage">
+                          <div class="stage-dot"></div>
+                          <span class="stage-label">Dispatch</span>
+                      </div>
+                      <div class="stage">
+                          <div class="stage-dot"></div>
+                          <span class="stage-label">In Transit</span>
+                      </div>
+                      <div class="stage">
+                          <div class="stage-dot"></div>
+                          <span class="stage-label">Delivered</span>
+                      </div>
+                  </div>
+                  <div class="status-message" id="statusMessage"></div>
+              </div>
+              <div class="error" id="errorMessage"></div>
+         
+ 
 
-              <label>Claim Type:</label>
-              <select class="editable" disabled>
-                <option>Select claim type</option>
-                <option value="damage">Damage</option>
-                <option value="loss">Loss</option>
-              </select>
-
-              <label>Description:</label>
-              <textarea class="editable" rows="4" disabled></textarea>
-
-              <label>Claim Amount:</label>
-              <input type="number" class="editable" disabled>
-            </form>
+            
+           
           </div>
-          <div class="button-container">
-            <button class="edit-btn">Edit</button>
-            <button class="save-btn">Save</button> <!-- Separate Save Button -->
-          </div>
-        </div>
-
-        <!-- Cargo Price Management Module -->
-        <div class="box-info">
-          <h1>Cargo Price Management</h1>
-          <div class="cargo-container">
-            <form>
-              <label>Route:</label>
-              <input type="text" class="editable" disabled>
-
-              <label>Cargo Category:</label>
-              <input type="text" class="editable" disabled>
-
-              <label>Base Price:</label>
-              <input type="number" class="editable" disabled>
-
-              <label>Surcharge (%):</label>
-              <input type="number" class="editable" min="0" max="100" disabled>
-              <br> <br>
-
-              <label>Discount (%):</label>
-              <input type="number" class="editable" min="0" max="100" disabled>
-            </form>
-          </div>
-          <div class="button-container">
-            <button class="edit-btn">Edit</button>
-            <button class="save-btn">Save</button> <!-- Separate Save Button -->
-          </div>
-        </div>
+     
 
       </main>
     </section>
 
     <script>
+      function enableRowEditing() {
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+          const checkbox = row.querySelector('input[type="checkbox"]');
+          const cells = row.querySelectorAll('td:not(:first-child)'); // Exclude the checkbox cell
+    
+          if (checkbox.checked) {
+            cells.forEach(cell => {
+              cell.setAttribute('contenteditable', 'true');
+            });
+          } else {
+            cells.forEach(cell => {
+              cell.setAttribute('contenteditable', 'false');
+            });
+          }
+        });
+      }
+    
+      // Save row changes
+      function saveRowChanges() {
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+          const checkbox = row.querySelector('input[type="checkbox"]');
+          if (checkbox.checked) {
+            const cells = row.querySelectorAll('td:not(:first-child)');
+            cells.forEach(cell => {
+              cell.setAttribute('contenteditable', 'false');
+            });
+            checkbox.checked = false; // Uncheck the checkbox after saving
+          }
+        });
+        alert("Row changes saved successfully!");
+      }
+      function Delete(){
+        alert("Deleted")
+      }
       document.querySelectorAll('.edit-btn').forEach((editBtn, index) => {
         editBtn.addEventListener('click', function() {
           const parent = editBtn.closest('.box-info');
@@ -144,7 +493,7 @@
       document.querySelectorAll('.save-btn').forEach((saveBtn, index) => {
         saveBtn.addEventListener('click', function() {
           const parent = saveBtn.closest('.box-info');
-          const inputs = parent.querySelectorAll('.editable');
+          const inputs = parent.querySelectorAll('.editable_vol');
 
           // Log the saved data
           console.log("Saved Data:", Array.from(inputs).map(input => input.value));
@@ -153,6 +502,189 @@
           alert("Changes Saved Successfully!");
         });
       });
+
+    // Get the checkbox and inputs
+    const checkbox = document.getElementById('enable_volumetric');
+    const inputs = document.querySelectorAll('.editable_vol');
+
+    // Function to toggle inputs based on checkbox
+    function toggleInputs() {
+        const enabled = checkbox.checked;
+        inputs.forEach(input => {
+            input.disabled = !enabled;  // Enable when checked, disable when unchecked
+        });
+    }
+
+    // Add event listener to checkbox
+    checkbox.addEventListener('change', toggleInputs);
+
+    // Initial state (in case page loads with checkbox already checked)
+    toggleInputs();
+
+
+    function calculateCharges() {
+                                const shipperCity = document.getElementById('shipperCity').value;
+                                const consigneeCity = document.getElementById('consigneeCity').value;
+                        
+                                // Base City Rate (Lahore to Karachi = 500 Rs, you can add more conditions here)
+                                let baseRate = 0;
+                                if ((shipperCity === 'Lahore' && consigneeCity === 'Karachi') || 
+                                    (shipperCity === 'Karachi' && consigneeCity === 'Lahore')) {
+                                    baseRate = 200;
+                                } else {
+                                    baseRate = 100; // Default for same city or other cities
+                                }
+                        
+                                // Get actual weight
+                                const actualWeight = parseFloat(document.getElementById('weight').value) || 0;
+                        
+                                // Get dimensions for volumetric weight
+                                const length = parseFloat(document.getElementById('length').value) || 0;
+                                const width = parseFloat(document.getElementById('width').value) || 0;
+                                const height = parseFloat(document.getElementById('height').value) || 0;
+                        
+                                // Calculate volumetric weight
+                                const volumetricWeight = (length * width * height) / 5000;
+                        
+                                // Get the chargeable weight (greater of actual or volumetric weight)
+                                const chargeableWeight = Math.max(actualWeight, volumetricWeight);
+                        
+                                // Rate per kg (dummy rate, you can adjust)
+                                const ratePerKg = 20;
+                        
+                                // Additional charges
+                                const additionalCharges = 135;
+                        
+                                // Total Charges Formula
+                                const totalCharges = baseRate + (chargeableWeight * ratePerKg) + additionalCharges;
+                        
+                                // Display the total charges
+                                document.getElementById('totalCharges').innerText = totalCharges.toFixed(2) + " Rs";
+                            }
+    
+    
+    
+    // generate pdf
+
+    function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Collect form data
+            const shipperCity = document.getElementById('shipperCity').value;
+            const shipperName = document.getElementById('shipperName').value;
+            const shipperContact = document.getElementById('shipperPhone').value;
+            const shipperAddress = document.getElementById('shipperAddress').value;
+
+            const consigneeCity = document.getElementById('consigneeCity').value;
+            const consigneeName = document.getElementById('consigneeName').value;
+            const consigneePhone = document.getElementById('consigneePhone').value;
+            const consigneeAddress = document.getElementById('consigneeAddress').value;
+
+            const consigneeEmail = document.getElementById('consigneeEmail').value;
+            const deliveryOption = document.getElementById('deliveryOption').value;
+
+            const orderId = document.getElementById('orderId').value;
+            const orderDate = document.getElementById('orderDate').value;
+            const itemDescription = document.getElementById('itemDescription').value;
+            const itemQuantity = document.getElementById('itemQuantity').value;
+            const insurance = document.getElementById('insurance').value;
+
+            const weight = document.getElementById('weight').value;
+            const length = document.getElementById('length').value;
+            const width = document.getElementById('width').value;
+            const height = document.getElementById('height').value;
+
+            const totalCharges = document.getElementById('totalCharges').innerText;
+
+            // Add content to PDF
+            doc.text("Shipper Information", 10, 10);
+            doc.text(`City: ${shipperCity}`, 10, 20);
+            doc.text(`Name: ${shipperName}`, 10, 30);
+            doc.text(`Contact: ${shipperContact}`, 10, 40);
+            doc.text(`Address: ${shipperAddress}`, 10, 50);
+
+            doc.text("Consignee Information", 10, 70);
+            doc.text(`City: ${consigneeCity}`, 10, 80);
+            doc.text(`Name: ${consigneeName}`, 10, 90);
+            doc.text(`Address: ${consigneeAddress}`, 10, 100);
+            doc.text(`Phone: ${consigneePhone}`, 10, 110);
+            doc.text(`Email: ${consigneeEmail}`, 10, 120);
+            doc.text(`Delivery Option: ${deliveryOption}`, 10, 130);
+
+            doc.text("Order Information", 10, 150);
+            doc.text(`Order ID: ${orderId}`, 10, 160);
+            doc.text(`Order Date: ${orderDate}`, 10, 170);
+            doc.text(`Item Description: ${itemDescription}`, 10, 180);
+            doc.text(`Item Quantity: ${itemQuantity}`, 10, 190);
+            doc.text(`Insurance: ${insurance}`, 10, 200);
+
+            doc.text("Rate Calculation", 10, 220);
+            doc.text(`Weight: ${weight} kg`, 10, 230);
+            doc.text(`Dimensions (LxWxH): ${length}cm x ${width}cm x ${height}cm`, 10, 240);
+            doc.text(`Total Charges: ${totalCharges}`, 10, 250);
+
+            // Save the PDF
+            doc.save("shipping_ticket.pdf");
+        }
+    
+    //cargo tracking
+
+     // Sample tracking data (simulated database)
+     const trackingData = {
+            'ABC123': 'Delivered',
+            'ABC124': 'In Transit',
+            'ABC125': 'Dispatch',
+            'ABC126': 'Pending'
+        };
+
+        function checkStatus() {
+            const trackingNumber = document.getElementById('trackingNumber').value.trim();
+            const statusContainer = document.getElementById('statusContainer');
+            const errorMessage = document.getElementById('errorMessage');
+            const statusMessage = document.getElementById('statusMessage');
+            const stages = document.querySelectorAll('.stage');
+            const progressFill = document.getElementById('progressFill');
+
+            // Reset display
+            errorMessage.textContent = '';
+            statusContainer.style.display = 'none';
+            stages.forEach(stage => stage.classList.remove('active'));
+            
+            if (!trackingNumber) {
+                errorMessage.textContent = 'Please enter a tracking number';
+                return;
+            }
+
+            const status = trackingData[trackingNumber.toUpperCase()];
+            
+            if (!status) {
+                errorMessage.textContent = 'Invalid tracking number';
+                return;
+            }
+
+            statusContainer.style.display = 'block';
+            
+            // Update status visualization
+            const statusIndex = {
+                'Pending': 0,
+                'Dispatch': 1,
+                'In Transit': 2,
+                'Delivered': 3
+            }[status];
+
+            // Activate stages
+            for (let i = 0; i <= statusIndex; i++) {
+                stages[i].classList.add('active');
+            }
+
+            // Update progress fill
+            const progressWidth = (statusIndex / (stages.length - 1)) * 100;
+            progressFill.style.width = `${progressWidth}%`;
+
+            // Update status message
+            statusMessage.textContent = `Current Status: ${status}`;
+        }
     </script>
   </body>
 </html>
