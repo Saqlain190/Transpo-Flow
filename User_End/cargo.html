@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Glass Website</title>
+    <link rel="stylesheet" href="cargo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+   
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="Company Logo">
+        </div>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="ticketbooking.html">Ticket Booking</a></li>
+                <li><a href="cargo.html">Cargo Booking</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="sign-in">
+            <a href="signin.html" class="sign-in-btn" style="text-decoration: none;">Sign In/Sign Up</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+       
+
+        <!-- Cargo Fare Calculator Form -->
+        <section >
+            
+            <div class="cargo-booking-container">
+                <h1 class="cargo-title">Cargo Booking</h1>
+                <div class="cargo-form-container">
+                    <form id="cargoBookingForm" class="modern-form">
+                        <!-- Shipper Information -->
+                        <section class="form-section">
+                            <h3 class="section-title">Shipper Information</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Shipper City</label>
+                                    <select id="shipperCity" class="form-select">
+                                        <option value="Lahore">Lahore</option>
+                                        <option value="Karachi">Karachi</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Shipper Name</label>
+                                    <input type="text" class="form-input" id="shipperName">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="text" class="form-input" id="shipperPhone">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label class="form-label">Shipper Address</label>
+                                    <input type="text" class="form-input" id="shipperAddress">
+                                </div>
+                            </div>
+                        </section>
+            
+                        <!-- Consignee Information -->
+                        <section class="form-section">
+                            <h3 class="section-title">Consignee Information</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Consignee City</label>
+                                    <select id="consigneeCity" class="form-select">
+                                        <option value="Lahore">Lahore</option>
+                                        <option value="Karachi">Karachi</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-input" id="consigneeName">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="text" class="form-input" id="consigneePhone">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" class="form-input" id="consigneeAddress">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-input" id="consigneeEmail">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Delivery Option</label>
+                                    <select class="form-select" id="deliveryOption">
+                                        <option>Company Office</option>
+                                        <option>Home</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+            
+                        <!-- Order Information -->
+                        <section class="form-section">
+                            <h3 class="section-title">Order Information</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Order ID</label>
+                                    <input type="text" class="form-input" id="orderId" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Order Date</label>
+                                    <input type="date" class="form-input" id="orderDate">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label class="form-label">Item Description</label>
+                                    <textarea class="form-textarea" id="itemDescription"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Item Quantity</label>
+                                    <input type="number" class="form-input" id="itemQuantity">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Insurance</label>
+                                    <select class="form-select" id="insurance">
+                                        <option>No</option>
+                                        <option>Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+            
+                        <!-- Rate Calculation -->
+                        <section class="form-section">
+                            <h3 class="section-title">Rate Calculation</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Weight (kg)</label>
+                                    <input type="number" class="form-input weight" id="weight">
+                                </div>
+                                <div class="dimension-group">
+                                    <div class="form-group">
+                                        <label class="form-label">Length (cm)</label>
+                                        <input type="number" class="form-input" id="length">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Width (cm)</label>
+                                        <input type="number" class="form-input" id="width">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Height (cm)</label>
+                                        <input type="number" class="form-input" id="height">
+                                    </div>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label class="form-label file-upload-label">
+                                        <span>Upload Images</span>
+                                        <input type="file" id="imageUpload" name="images[]" accept="image/*" multiple >
+                                        <div class="file-count" id="fileCount">No files selected</div>
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+            
+                        <div class="action-buttons">
+                            <button type="button" class="btn calculate-btn" onclick="calculateCharges()">Calculate Charges</button>
+                            <h3 class="total-charges">Total Charges: <span id="totalCharges">0 Rs</span></h3>
+                        </div>
+                    </form>
+            
+                    <div class="button-container">
+                        <button class="btn print-btn" onclick="generatePDF()">Book & Print</button>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+        <section>
+            
+            <div class="cargo-booking-container">
+                <!-- Existing Booking Form Here -->
+            
+                <!-- Tracking Section -->
+                <div class="cargo-form-container tracking-section">
+                    <h1 class="cargo-title">Cargo Tracking System</h1>
+                    <div class="modern-form">
+                        <h3 class="section-title">Track Your Parcel Here</h3>
+                        <div class="tracking-input form-group">
+                            <input type="text" 
+                                   id="trackingNumber" 
+                                   class="form-input"
+                                   placeholder="Enter tracking number">
+                            <button class="btn calculate-btn" onclick="checkStatus()">Track</button>
+                        </div>
+                        
+                        <div class="status-container" id="statusContainer">
+                            <div class="progress-bar">
+                                <div class="progress-line"></div>
+                                <div class="progress-fill" id="progressFill"></div>
+                                <div class="stage">
+                                    <div class="stage-dot"></div>
+                                    <span class="stage-label">Pending</span>
+                                </div>
+                                <div class="stage">
+                                    <div class="stage-dot"></div>
+                                    <span class="stage-label">Dispatch</span>
+                                </div>
+                                <div class="stage">
+                                    <div class="stage-dot"></div>
+                                    <span class="stage-label">In Transit</span>
+                                </div>
+                                <div class="stage">
+                                    <div class="stage-dot"></div>
+                                    <span class="stage-label">Delivered</span>
+                                </div>
+                            </div>
+                            <div class="status-message" id="statusMessage"></div>
+                        </div>
+                        <div class="error-message" id="errorMessage"></div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are a company dedicated to innovation and modern design.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@example.com</p>
+                <p>Phone: +123 456 7890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Modern Company. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Fare Calculation -->
+    <script>
+       document.getElementById('imageUpload').addEventListener('change', function(e) {
+    const fileCount = document.getElementById('fileCount');
+    const files = e.target.files;
+    
+    if(files.length > 0) {
+        const fileNames = Array.from(files).map(file => file.name).join(', ');
+        fileCount.textContent = `${files.length} file(s) selected: ${fileNames}`;
+    } else {
+        fileCount.textContent = 'No files selected';
+    }
+});
+//calulate charges
+
+        
+    function calculateCharges() {
+                                const shipperCity = document.getElementById('shipperCity').value;
+                                const consigneeCity = document.getElementById('consigneeCity').value;
+                        
+                                // Base City Rate (Lahore to Karachi = 500 Rs, you can add more conditions here)
+                                let baseRate = 0;
+                                if ((shipperCity === 'Lahore' && consigneeCity === 'Karachi') || 
+                                    (shipperCity === 'Karachi' && consigneeCity === 'Lahore')) {
+                                    baseRate = 200;
+                                } else {
+                                    baseRate = 100; // Default for same city or other cities
+                                }
+                        
+                                // Get actual weight
+                                const actualWeight = parseFloat(document.getElementById('weight').value) || 0;
+                        
+                                // Get dimensions for volumetric weight
+                                const length = parseFloat(document.getElementById('length').value) || 0;
+                                const width = parseFloat(document.getElementById('width').value) || 0;
+                                const height = parseFloat(document.getElementById('height').value) || 0;
+                        
+                                // Calculate volumetric weight
+                                const volumetricWeight = (length * width * height) / 5000;
+                        
+                                // Get the chargeable weight (greater of actual or volumetric weight)
+                                const chargeableWeight = Math.max(actualWeight, volumetricWeight);
+                        
+                                // Rate per kg (dummy rate, you can adjust)
+                                const ratePerKg = 20;
+                        
+                                // Additional charges
+                                const additionalCharges = 135;
+                        
+                                // Total Charges Formula
+                                const totalCharges = baseRate + (chargeableWeight * ratePerKg) + additionalCharges;
+                        
+                                // Display the total charges
+                                document.getElementById('totalCharges').innerText = totalCharges.toFixed(2) + " Rs";
+                            }
+    
+    
+    
+
+
+         // generate pdf
+
+    function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Collect form data
+            const shipperCity = document.getElementById('shipperCity').value;
+            const shipperName = document.getElementById('shipperName').value;
+            const shipperContact = document.getElementById('shipperPhone').value;
+            const shipperAddress = document.getElementById('shipperAddress').value;
+
+            const consigneeCity = document.getElementById('consigneeCity').value;
+            const consigneeName = document.getElementById('consigneeName').value;
+            const consigneePhone = document.getElementById('consigneePhone').value;
+            const consigneeAddress = document.getElementById('consigneeAddress').value;
+
+            const consigneeEmail = document.getElementById('consigneeEmail').value;
+            const deliveryOption = document.getElementById('deliveryOption').value;
+
+            const orderId = document.getElementById('orderId').value;
+            const orderDate = document.getElementById('orderDate').value;
+            const itemDescription = document.getElementById('itemDescription').value;
+            const itemQuantity = document.getElementById('itemQuantity').value;
+            const insurance = document.getElementById('insurance').value;
+
+            const weight = document.getElementById('weight').value;
+            const length = document.getElementById('length').value;
+            const width = document.getElementById('width').value;
+            const height = document.getElementById('height').value;
+
+            const totalCharges = document.getElementById('totalCharges').innerText;
+
+            // Add content to PDF
+            doc.text("Shipper Information", 10, 10);
+            doc.text(`City: ${shipperCity}`, 10, 20);
+            doc.text(`Name: ${shipperName}`, 10, 30);
+            doc.text(`Contact: ${shipperContact}`, 10, 40);
+            doc.text(`Address: ${shipperAddress}`, 10, 50);
+
+            doc.text("Consignee Information", 10, 70);
+            doc.text(`City: ${consigneeCity}`, 10, 80);
+            doc.text(`Name: ${consigneeName}`, 10, 90);
+            doc.text(`Address: ${consigneeAddress}`, 10, 100);
+            doc.text(`Phone: ${consigneePhone}`, 10, 110);
+            doc.text(`Email: ${consigneeEmail}`, 10, 120);
+            doc.text(`Delivery Option: ${deliveryOption}`, 10, 130);
+
+            doc.text("Order Information", 10, 150);
+            doc.text(`Order ID: ${orderId}`, 10, 160);
+            doc.text(`Order Date: ${orderDate}`, 10, 170);
+            doc.text(`Item Description: ${itemDescription}`, 10, 180);
+            doc.text(`Item Quantity: ${itemQuantity}`, 10, 190);
+            doc.text(`Insurance: ${insurance}`, 10, 200);
+
+            doc.text("Rate Calculation", 10, 220);
+            doc.text(`Weight: ${weight} kg`, 10, 230);
+            doc.text(`Dimensions (LxWxH): ${length}cm x ${width}cm x ${height}cm`, 10, 240);
+            doc.text(`Total Charges: ${totalCharges}`, 10, 250);
+
+            // Save the PDF
+            doc.save("shipping_ticket.pdf");
+        }
+
+
+
+
+
+          //cargo tracking
+
+    // Cargo Tracking System
+document.addEventListener('DOMContentLoaded', () => {
+    // Simulated database with more sample data
+    const trackingData = {
+        'ABC123': { status: 'Delivered' },
+        'ABC124': { status: 'In Transit' },
+        'ABC125': { status: 'Dispatch'},
+        'ABC126': { status: 'Pending'}
+    };
+
+    // DOM Elements
+    const trackingInput = document.getElementById('trackingNumber');
+    const trackButton = document.querySelector('.tracking-input button');
+    const statusContainer = document.getElementById('statusContainer');
+    const errorMessage = document.getElementById('errorMessage');
+    const statusMessage = document.getElementById('statusMessage');
+    const stages = document.querySelectorAll('.stage');
+    const progressFill = document.getElementById('progressFill');
+
+    // Status configuration
+    const statusOrder = ['Pending', 'Dispatch', 'In Transit', 'Delivered'];
+    
+    // Event Listeners
+    trackButton.addEventListener('click', checkStatus);
+    trackingInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkStatus();
+    });
+
+    function checkStatus() {
+        const trackingNumber = trackingInput.value.trim().toUpperCase();
+        resetUI();
+
+        if (!trackingNumber) {
+            showError('Please enter a tracking number');
+            return;
+        }
+
+        const shipment = trackingData[trackingNumber];
+        
+        if (!shipment) {
+            showError('Invalid tracking number');
+            return;
+        }
+
+        showStatus(shipment);
+    }
+
+    function resetUI() {
+        errorMessage.style.display = 'none';
+        statusContainer.style.display = 'none';
+        stages.forEach(stage => stage.classList.remove('active'));
+        progressFill.style.width = '0%';
+    }
+
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        statusContainer.style.display = 'none';
+    }
+
+    function showStatus(shipment) {
+        statusContainer.style.display = 'block';
+        errorMessage.style.display = 'none';
+
+        const statusIndex = statusOrder.indexOf(shipment.status);
+        const progressWidth = (statusIndex / (stages.length - 1)) * 100;
+
+        // Animate progress fill
+        progressFill.style.width = `${progressWidth}%`;
+        
+        // Activate stages
+        stages.forEach((stage, index) => {
+            if (index <= statusIndex) {
+                setTimeout(() => {
+                    stage.classList.add('active');
+                }, index * 200);
+            }
+        });
+
+        // Update status message
+        statusMessage.innerHTML = `
+            <div class="status-detail">
+                <span class="status-badge">${shipment.status}</span>
+                
+            </div>
+        `;
+    }
+});
+    
+    </script>
+</body>
+</html>
